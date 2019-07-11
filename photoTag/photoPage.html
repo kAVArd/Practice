@@ -10,13 +10,14 @@
   <link rel="stylesheet" href="./style.css">
   <title>Photo page</title>
 </head>
-<body onclick="changeIsBlank()">
-  <div class='image-wrapper' style="width: 30%; margin: auto"> 
-    <img class="image" width="100%" src="./20190515_193051.jpg" onclick="createInput(event)"/>
+<body>
+  <div id='image-wrapper' style="width: 30%; margin: auto"> 
+    <img id="image" width="100%" src="./20190515_193051.jpg"/>
   </div>
-  <div class="input-wrapper">
+  <div id="input-wrapper">
+    <input type="text" size="15" id="tag-input" class="form-control" placeholder="Enter tag text"/> 
   </div>
-  <div class="tags-wrapper">
+  <div id="tags-wrapper">
   </div>
 </body>
 <script src="./photoTag.js"></script>

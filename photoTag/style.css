@@ -1,0 +1,14 @@
+#image-wrapper {
+  width: 30%;
+  margin: auto;
+  user-select: none;
+}
+
+#tag:hover {
+  cursor: default;
+  user-select: none;
+}
+
+h6 {
+  margin: auto
+}
