@@ -1,25 +1,25 @@
+const inputWrapper = document.getElementById('input-wrapper')
 const position = { x: 0, y: 0 }
 const tagInput = document.getElementById('tag-input')
-tagInput.style.visibility = 'hidden'
+inputWrapper.style.visibility = 'hidden'
 let drugObject = null
 
 const createTag = (e) => {
-  if (e && e.target.id === 'image' && tagInput.style.visibility === 'hidden') {
+  if (e && e.target.id === 'image' && inputWrapper.style.visibility === 'hidden') {
     position.x = e.clientX
     position.y = e.clientY
 
-    const inputWrapper = document.getElementById('input-wrapper')
     inputWrapper.style.position = 'absolute'
     inputWrapper.style.left = position.x + 'px'
     inputWrapper.style.top = position.y + 'px'
-    tagInput.style.visibility = 'visible'
+    inputWrapper.style.visibility = 'visible'
     tagInput.focus()
     return
   }
 
   const textTag = tagInput.value
   tagInput.value = ''
-  tagInput.style.visibility = 'hidden'
+  inputWrapper.style.visibility = 'hidden'
 
   if (textTag === '') {
     return
@@ -37,9 +37,11 @@ const createTag = (e) => {
     drugObject = this
   }
 
-  tagSpan.onmouseup = () => {
+  tagSpan.onmouseup = (e) => {
     drugObject = null
   }
+
+  tagSpan.ondblclick = tagToInput
 
   document.getElementById('tags-wrapper').appendChild(tagSpan)
 }
@@ -52,9 +54,27 @@ document.getElementById('tag-input').addEventListener('keypress', (e) => {
 })
 
 document.getElementById('image').onmousemove = function (e) {
-  console.log(1)
   if (drugObject !== null) {
     drugObject.style.left = e.pageX - drugObject.offsetWidth / 2 + 'px'
     drugObject.style.top = e.pageY - drugObject.offsetHeight / 2 + 'px'
   }
 }
+
+const tagToInput = (e) => {
+  console.dir(e)
+  const text = e.target.textContent
+  position.x = e.clientX - e.offsetWidth
+  position.y = e.clientY - e.offsetHeight
+  e.target.parentNode.remove()
+  inputWrapper.style.left = position.x + 'px'
+  inputWrapper.style.top = position.y + 'px'
+  inputWrapper.style.visibility = 'visible'
+  tagInput.value = text
+
+  tagInput.focus()
+}
+
+document.getElementById('close').addEventListener('click', (e) => {
+  tagInput.value = ''
+  inputWrapper.style.visibility = 'hidden'
+})

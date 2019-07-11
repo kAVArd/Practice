@@ -10,5 +10,25 @@
 }
 
 h6 {
-  margin: auto
+  margin: auto;
+}
+
+#close {
+  color: red;
+  font-weight: bolder;
+  float: right;
+  font-size: 25px;
+}
+
+#close:hover {
+  cursor: pointer;
+}
+
+#input-wrapper{
+  width: 170px;
+}
+
+#tag-input {
+  width: 90%;
+  float: left
 }
