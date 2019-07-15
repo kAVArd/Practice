@@ -4,9 +4,13 @@
   user-select: none;
 }
 
-#tag:hover {
+.tag:hover {
   cursor: default;
   user-select: none;
+}
+
+.tag {
+  position: absolute;
 }
 
 h6 {
@@ -26,6 +30,7 @@ h6 {
 
 #input-wrapper{
   width: 170px;
+  position: absolute;
 }
 
 #tag-input {
